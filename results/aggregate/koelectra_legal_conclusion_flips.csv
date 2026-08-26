@@ -1,0 +1,10 @@
+condition,target,support,prediction_flip_rate
+original,fine_lv,351,0.0
+original,imprisonment_with_labor_lv,351,0.0
+original,imprisonment_without_labor_lv,351,0.0
+marker_removed,fine_lv,351,0.02849002849002849
+marker_removed,imprisonment_with_labor_lv,351,0.03418803418803419
+marker_removed,imprisonment_without_labor_lv,351,0.0
+sentence_removed,fine_lv,351,0.20512820512820512
+sentence_removed,imprisonment_with_labor_lv,351,0.2792022792022792
+sentence_removed,imprisonment_without_labor_lv,351,0.008547008547008548

@@ -1,0 +1,4 @@
+model,seed,target,accuracy,macro_f1,weighted_f1,support
+monologg/koelectra-base-v3-discriminator,42,fine_lv,0.68,0.4350371426577381,0.6514461613630539,1050
+monologg/koelectra-base-v3-discriminator,42,imprisonment_with_labor_lv,0.6685714285714286,0.4401546656421274,0.668834343387334,1050
+monologg/koelectra-base-v3-discriminator,42,imprisonment_without_labor_lv,0.9380952380952381,0.3272588089609366,0.9372262695464317,1050

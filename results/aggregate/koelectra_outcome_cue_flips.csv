@@ -1,0 +1,13 @@
+condition,target,support,prediction_flip_rate
+original,fine_lv,997,0.0
+original,imprisonment_with_labor_lv,997,0.0
+original,imprisonment_without_labor_lv,997,0.0
+neutral,fine_lv,997,0.025075225677031094
+neutral,imprisonment_with_labor_lv,997,0.03510531594784353
+neutral,imprisonment_without_labor_lv,997,0.0
+lenient,fine_lv,997,0.026078234704112337
+lenient,imprisonment_with_labor_lv,997,0.044132397191574725
+lenient,imprisonment_without_labor_lv,997,0.0
+severe,fine_lv,997,0.025075225677031094
+severe,imprisonment_with_labor_lv,997,0.05015045135406219
+severe,imprisonment_without_labor_lv,997,0.0

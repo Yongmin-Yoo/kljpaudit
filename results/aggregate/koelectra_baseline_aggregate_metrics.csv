@@ -1,0 +1,2 @@
+model,seed,mean_macro_f1,joint_exact_match,support
+monologg/koelectra-base-v3-discriminator,42,0.4008168724202674,0.5095238095238095,1050
