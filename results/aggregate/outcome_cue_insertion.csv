@@ -1,0 +1,5 @@
+condition,mean_macro_f1,delta_mean_macro_f1,joint_exact_match,delta_joint_exact_match,joint_flip_rate
+original,0.3908,0.0,0.4676,0.0,0.0
+neutral,0.3873,-0.0035,0.4576,-0.01,0.0541
+lenient,0.3932,0.0024,0.4738,0.0062,0.0631
+severe,0.3914,0.0006,0.4695,0.002,0.0731

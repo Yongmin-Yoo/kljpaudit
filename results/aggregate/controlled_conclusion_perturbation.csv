@@ -1,0 +1,5 @@
+condition,subset_size,mean_macro_f1,delta_mean_macro_f1,joint_exact_match,delta_joint_exact_match,joint_flip_rate
+original,329,0.3713,0.0,0.5015,0.0,0.0
+paraphrased,329,0.374,0.0027,0.5106,0.0091,0.0304
+fronted,329,0.3779,0.0066,0.5137,0.0122,0.0517
+paraphrased_fronted,329,0.3772,0.0059,0.5228,0.0213,0.076

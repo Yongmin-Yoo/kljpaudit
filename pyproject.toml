@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kljpaudit"
+version = "0.1.0.dev0"
+description = "A controlled behavioral audit of hindsight leakage in Korean legal judgment prediction."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Yongmin Yoo"}
+]
+keywords = [
+    "legal-nlp",
+    "legal-judgment-prediction",
+    "hindsight-leakage",
+    "behavioral-audit",
+    "korean-nlp"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+    "PyYAML>=6.0"
+]
+
+[project.optional-dependencies]
+ml = [
+    "torch>=2.1",
+    "transformers>=4.45,<5",
+    "pyarrow>=14",
+    "tqdm>=4.66",
+    "openpyxl>=3.1"
+]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6"
+]
+
+[project.urls]
+Homepage = "https://github.com/Yongmin-Yoo/kljpaudit"
+Repository = "https://github.com/Yongmin-Yoo/kljpaudit"
+Issues = "https://github.com/Yongmin-Yoo/kljpaudit/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]

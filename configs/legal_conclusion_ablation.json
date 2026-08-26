@@ -1,0 +1,14 @@
+{
+  "experiment_name": "legal_conclusion_ablation_v1",
+  "marker": "이로써",
+  "required_term": "피고인",
+  "conditions": [
+    "original",
+    "marker_removed",
+    "sentence_removed"
+  ],
+  "max_length": 512,
+  "eval_batch_size": 32,
+  "bootstrap_iterations": 1000,
+  "seed": 42
+}

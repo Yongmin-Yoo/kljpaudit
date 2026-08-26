@@ -1,0 +1,13 @@
+{
+  "experiment_name": "outcome_cue_insertion_v1",
+  "position": "append",
+  "cues": {
+    "neutral": "이 사건의 구체적인 사실관계는 위에서 서술한 바와 같다.",
+    "lenient": "이 사건은 참작할 사정이 충분하여 관대한 처벌이 타당하다.",
+    "severe": "이 사건은 죄책이 무거워 엄한 처벌이 불가피하다."
+  },
+  "max_length": 512,
+  "eval_batch_size": 32,
+  "bootstrap_iterations": 1000,
+  "seed": 42
+}

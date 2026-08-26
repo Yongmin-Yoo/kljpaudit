@@ -1,0 +1,17 @@
+{
+  "experiment_name": "conclusion_preserving_perturbation_v1",
+  "original_marker": "이로써",
+  "paraphrased_marker": "이와 같이",
+  "required_term": "피고인",
+  "conditions": [
+    "original",
+    "paraphrased",
+    "fronted",
+    "paraphrased_fronted"
+  ],
+  "max_length": 512,
+  "eval_batch_size": 32,
+  "bootstrap_iterations": 1000,
+  "manual_review_sample_size": 100,
+  "seed": 42
+}

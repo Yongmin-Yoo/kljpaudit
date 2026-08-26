@@ -1,0 +1,88 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Jupyter and Colab
+.ipynb_checkpoints/
+*.ipynb
+content/
+sample_data/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+*token*
+*credentials*
+secrets/
+wandb/
+
+# LBOX OPEN and derived private data
+data/
+artifacts/
+cache/
+checkpoints/
+predictions/
+private_data/
+annotations/
+candidate_extraction/
+review_samples/
+huggingface/
+hf_cache/
+
+# Model and data binaries
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+*.parquet
+*.arrow
+*.jsonl
+*.xlsx
+*.xls
+*.pkl
+*.pickle
+*.joblib
+*.npy
+*.npz
+
+# Logs and temporary outputs
+logs/
+tmp/
+temp/
+*.log
+
+# Raw or transformed judicial text
+*raw*
+*private*
+*facts*
+*matched_sentence*
+*text_original*
+*text_paraphrased*
+*text_fronted*
+
+# Allow intentionally public documentation and aggregate outputs
+!docs/
+!results/
+!results/aggregate/
+!demo/

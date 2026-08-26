@@ -1,0 +1,4 @@
+split,fine_accuracy,fine_macro_f1,imprisonment_accuracy,imprisonment_macro_f1,no_labor_accuracy,no_labor_macro_f1,mean_macro_f1,joint_exact_match
+validation,0.602,0.431,0.684,0.411,0.936,0.328,0.39,0.453
+test,0.627,0.447,0.684,0.396,0.94,0.33,0.391,0.468
+test2,0.633,0.454,0.689,0.406,0.943,0.334,0.398,0.477

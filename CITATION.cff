@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use K-LJPAUDIT, please cite this software."
+title: "K-LJPAUDIT: A Controlled Audit of Hindsight Leakage in Korean Legal Judgment Prediction"
+type: software
+authors:
+  - family-names: Yoo
+    given-names: Yongmin
+repository-code: "https://github.com/Yongmin-Yoo/kljpaudit"
+url: "https://github.com/Yongmin-Yoo/kljpaudit"
+license: MIT
+version: 0.1.0-dev
+date-released: 2026-08-26
+keywords:
+  - legal judgment prediction
+  - hindsight leakage
+  - behavioral auditing
+  - Korean legal NLP
