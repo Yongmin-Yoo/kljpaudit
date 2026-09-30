@@ -1,0 +1,86 @@
+{
+  "synthetic": true,
+  "description": "Entirely synthetic predictions; not empirical results.",
+  "original": [
+    {
+      "case_uid": "synthetic-001",
+      "y_true": [
+        0,
+        0,
+        0
+      ],
+      "y_pred": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "case_uid": "synthetic-002",
+      "y_true": [
+        1,
+        0,
+        0
+      ],
+      "y_pred": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "case_uid": "synthetic-003",
+      "y_true": [
+        0,
+        1,
+        0
+      ],
+      "y_pred": [
+        0,
+        1,
+        0
+      ]
+    }
+  ],
+  "transformed": [
+    {
+      "case_uid": "synthetic-001",
+      "y_true": [
+        0,
+        0,
+        0
+      ],
+      "y_pred": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "case_uid": "synthetic-002",
+      "y_true": [
+        1,
+        0,
+        0
+      ],
+      "y_pred": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "case_uid": "synthetic-003",
+      "y_true": [
+        0,
+        1,
+        0
+      ],
+      "y_pred": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "synthetic": true,
+  "description": "Entirely synthetic software-test fixtures. Not human evaluations of real cases and not evidence for the manuscript's empirical subset.",
+  "adjudicated": [
+    {
+      "record_type": "adjudicated",
+      "synthetic": true,
+      "legal_conclusion_match": "yes",
+      "meaning_preserved": "yes",
+      "facts_preserved_paraphrase": "yes",
+      "grammatically_natural": "yes",
+      "no_new_outcome_cue": "yes",
+      "content_type": "sentencing_assessment",
+      "outcome_relation": "outcome_contingent_revealing",
+      "prospective_availability": "not_independently_available",
+      "facts_preserved_after_removal": "yes",
+      "case_uid": "synthetic-001"
+    },
+    {
+      "record_type": "adjudicated",
+      "synthetic": true,
+      "legal_conclusion_match": "yes",
+      "meaning_preserved": "yes",
+      "facts_preserved_paraphrase": "yes",
+      "grammatically_natural": "yes",
+      "no_new_outcome_cue": "yes",
+      "content_type": "sentencing_assessment",
+      "outcome_relation": "outcome_contingent_revealing",
+      "prospective_availability": "available",
+      "facts_preserved_after_removal": "yes",
+      "case_uid": "synthetic-002"
+    },
+    {
+      "record_type": "adjudicated",
+      "synthetic": true,
+      "legal_conclusion_match": "yes",
+      "meaning_preserved": "yes",
+      "facts_preserved_paraphrase": "yes",
+      "grammatically_natural": "yes",
+      "no_new_outcome_cue": "yes",
+      "content_type": "sentencing_assessment",
+      "outcome_relation": "outcome_independent",
+      "prospective_availability": "not_independently_available",
+      "facts_preserved_after_removal": "yes",
+      "case_uid": "synthetic-003"
+    },
+    {
+      "record_type": "adjudicated",
+      "synthetic": true,
+      "legal_conclusion_match": "yes",
+      "meaning_preserved": "yes",
+      "facts_preserved_paraphrase": "yes",
+      "grammatically_natural": "yes",
+      "no_new_outcome_cue": "yes",
+      "content_type": "sentencing_assessment",
+      "outcome_relation": "outcome_contingent_revealing",
+      "prospective_availability": "not_independently_available",
+      "facts_preserved_after_removal": "unclear",
+      "case_uid": "synthetic-004"
+    }
+  ]
+}

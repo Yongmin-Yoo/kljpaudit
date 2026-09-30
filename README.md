@@ -48,8 +48,8 @@ internal computational mechanism.
   outcome-indicative expressions?
 - **RQ2:** How does performance change when these expressions are removed or
   rewritten?
-- **RQ3:** When legally relevant facts conflict with superficial cues, which
-  information has greater influence?
+- **RQ3:** Do inserted directional cues systematically control predicted
+  severity, including in reference-outcome-stratified diagnostics?
 - **RQ4:** Are predictions robust to legally irrelevant changes in style,
   lexical choice, and judicial phrasing?
 - **RQ5:** Do reliance patterns generalize across case categories and model
@@ -101,28 +101,49 @@ Mean Macro-F1 is **0.391**, and joint exact match is **0.468**.
 
 ## Current audit results
 
-| Intervention | Primary observation |
-|---|---|
-| Marker removal | 2.85% joint flip; no significant aggregate degradation |
-| Conclusion-sentence removal | 34.76% joint flip; mean Macro-F1 decreases by 0.048 |
-| Neutral cue | 5.41% joint flip |
-| Lenient cue | 6.31% joint flip |
-| Severe cue | 7.31% joint flip |
-| Controlled paraphrase | 3.04% joint flip; no significant degradation |
-| Sentence fronting | 5.17% joint flip; no significant degradation |
-| Paraphrase and fronting | 7.60% joint flip; no significant degradation |
+The manuscript distinguishes all detector matches from a manually validated
+leakage subset. The detector matches 351 of 1,050 test cases. Human review
+covers 150 cases sampled from the 329-case fully visible rewriting subset.
 
-Complete sentence removal produces substantially larger changes than marker
-removal, controlled paraphrasing, or sentence relocation. This contrast
-suggests dependence on information contained in the legal-conclusion sentence
-rather than on the isolated marker or original sentence position. It does not,
-however, establish either genuine legal reasoning or hindsight leakage because
-the sentence may contain judge-formulated legal conclusions.
+| Analysis | Model | N | Joint flip | Delta mean Macro-F1 | Delta joint EM |
+|---|---|---:|---:|---:|---:|
+| Marker removal, all matched | KLUE-RoBERTa | 351 | 2.85% | +0.002 | +0.009 |
+| Sentence removal, all matched | KLUE-RoBERTa | 351 | 34.76% | -0.048 | -0.125 |
+| Sentence removal, all matched | KoELECTRA | 351 | 34.47% | -0.024 | -0.128 |
+| Sentence removal, validated subset | KLUE-RoBERTa | 132 | 44.70% | -0.082 | -0.1818 |
+| Sentence removal, validated subset | KoELECTRA | 132 | 43.18% | -0.061 | -0.1742 |
 
-The controlled perturbation results remain preliminary pending manual semantic
-validation.
+The values above are manuscript-reported results. The original baseline and
+351-case ablation point estimates were also independently recomputed from
+private prediction artifacts during the repository synchronization audit.
+The 132-case values are manuscript-reported, not independently recomputed in
+that audit.
+
+The validated subset requires outcome contingency/revelation, lack of
+independent prospective availability, and preservation of pre-disposition
+facts after complete sentence removal. These criteria provide a more targeted
+test than detector matching alone; they do not establish a causal account of
+the model's internal reasoning.
+
+| Other intervention | KLUE-RoBERTa joint flip |
+|---|---:|
+| Neutral cue | 5.41% |
+| Lenient cue | 6.31% |
+| Severe cue | 7.31% |
+| Controlled paraphrase | 3.04% |
+| Sentence fronting | 5.17% |
+| Paraphrase and fronting | 7.60% |
+
+Cue insertion affects a minority of predictions but does not provide consistent
+ordinal control. Formatting results distinguish tokenizer-equivalent changes
+from visible typography changes with unchanged predictions.
+
+Human validation has been completed as reported in the manuscript; its
+protocol and aggregate results are described in
+[docs/human_validation.md](docs/human_validation.md).
 
 ---
+
 ## Repository structure
 
 ```text
@@ -253,25 +274,45 @@ sampled case indices are applied to the original and transformed predictions.
 
 ## Reproducibility
 
-The baseline uses a fixed random seed of 42, KLUE-RoBERTa-base, a maximum
-sequence length of 512 tokens, FP16 mixed-precision training, and square-root
-inverse-frequency class weighting. The selected baseline checkpoint is the
-checkpoint with the highest mean validation Macro-F1.
+The original frozen KLUE-RoBERTa audit checkpoint and the separately retrained
+seed-42 checkpoint must not be treated as the same model.
 
-The public configuration files record the experimental settings. Model
-checkpoints and document-level predictions are not distributed through this
-repository.
+| Checkpoint role | Seed | Selected epoch | Test mean Macro-F1 | Test joint EM |
+|---|---:|---:|---:|---:|
+| Original frozen KLUE-RoBERTa audit | 42 | 2 | 0.390791 | 0.467619 |
+| Matched-protocol KLUE-RoBERTa replication | 13 | 3 | 0.416543 | 0.532381 |
+| Matched-protocol KLUE-RoBERTa replication | 42 | 3 | 0.410564 | 0.518095 |
+| Matched-protocol KLUE-RoBERTa replication | 100 | 3 | 0.414468 | 0.520952 |
+| KoELECTRA replication | 42 | 3 | 0.400817 | 0.509524 |
 
-The following aggregate result files are included:
+Baseline metrics in this table were recomputed from private predictions.
+Checkpoint metadata confirms the listed seeds where stored and the listed
+epochs. Validation histories support the original audit and retrained seed-42
+checkpoint selections. These checks do not by themselves establish the cause
+of their performance difference or prove checkpoint-to-prediction provenance
+through rerun inference.
 
-```text
-results/aggregate/baseline_results.csv
-results/aggregate/legal_conclusion_ablation.csv
-results/aggregate/outcome_cue_insertion.csv
-results/aggregate/controlled_conclusion_perturbation.csv
-```
+The matched-protocol three-seed analysis concerns baseline stability; the
+manuscript does not report a complete multi-seed replication of every
+intervention.
 
-These tables contain no judgment text or document-level records.
+Evaluation uses the full target label spaces: 5 fine classes, 6
+imprisonment-with-labor classes, and 5 imprisonment-without-labor classes.
+Case identifiers must be aligned before paired comparisons. An identifier
+format change is not evidence of a different case set; joins must be checked
+against the underlying test IDs.
+
+Paired intervals use 1,000 case-level resamples with seed 42. Exact interval
+reproduction additionally requires the same case order, random-number
+implementation, and metric implementation.
+
+Checkpoints, case-level predictions, and annotation workbooks remain outside
+the public repository. Public code operates on authorized private inputs or
+explicitly synthetic examples. Documentation of a result is not, by itself,
+an executable reproduction route.
+
+See [docs/experiment_status.md](docs/experiment_status.md) for the distinction
+between manuscript experiment completion and public artifact readiness.
 
 ---
 
@@ -360,44 +401,64 @@ and aggregate results are intended for public release.
 
 ---
 
+
+### Synchronization artifact guide
+
+- [351-case execution guide](docs/core_ablation_reproduction.md)
+- [Human-validation protocol](docs/human_validation.md)
+- [Independent agreement aggregation](docs/annotation_aggregation.md)
+- [Paired evaluation](docs/paired_evaluation.md)
+- [Checkpoint provenance](docs/checkpoint_provenance.md)
+- [Audit environment](docs/audit_environment.md)
+- [Manuscript-to-code map](docs/table_script_map.md)
+- [Anonymous review export](docs/anonymous_release.md)
+
 ## Current scope
 
-The current experiments constitute a behavioral audit rather than a
-mechanistic analysis of the model's internal computation. They measure
-prediction sensitivity under specified transformations but do not establish
-that the model performs genuine legal reasoning.
+This project is a paired behavioral audit, not a mechanistic analysis of
+internal model reasoning. The full 351-case removal analysis measures
+sentence-level information dependence. The manually validated 132-case
+analysis targets outcome-related information judged removable without
+deleting necessary pre-disposition facts.
 
-The legal-conclusion ablation cannot by itself distinguish legally relevant
-offense information from hindsight leakage. Controlled paraphrasing and
-sentence relocation provide an initial robustness test, but the corresponding
-interpretation remains preliminary until manual semantic validation is
-complete. The cue-insertion experiment uses a fixed set of templates and
-cannot rule out susceptibility to other cue phrasings, strengths, or positions.
+The manuscript reports completed human validation, three-seed baseline
+replication, two encoder families, formatting/tokenization diagnostics, and
+exploratory category and opposing-cue analyses.
 
-Remaining work includes:
+The opposing-cue diagnostic uses reference outcomes as a proxy; it is not a
+direct manipulation of aggravating or mitigating facts. Cue insertion keeps
+benchmark labels fixed for diagnosis, not because every inserted assessment
+constitutes a legally valid label-preserving counterfactual.
 
-- style-only perturbation;
-- explicit fact--cue conflict evaluation;
-- multiple-seed replication;
-- model-family generalization;
-- human annotation and inter-annotator agreement.
+Further work is prioritized as follows:
+1. Fact-preserving, length/position-matched non-leakage sentence deletion
+   controls, validated by human reviewers.
+2. Core ablation replication across existing seed checkpoints.
+3. Exploratory effects by validated sentence content type.
+
+These additional experiments are not reported as completed.
 
 ---
 
 ## Limitations
 
-1. The current baseline uses one pretrained encoder family and one training
-   seed.
-2. The sentencing labels do not directly encode suspended execution of
-   imprisonment.
-3. Rare severe-punishment levels contain very few training examples.
-4. Inputs longer than 512 tokens are truncated.
-5. Independent classification heads may produce legally incoherent
-   multi-punishment combinations.
-6. Rule-based legal-conclusion matching covers only a subset of test cases.
-7. Current cue and paraphrase experiments use a limited number of templates.
-8. Controlled perturbations require manual validation before they can be
-   described as definitively meaning-preserving.
+1. Experiments cover two Korean encoder families, one benchmark, and seven
+   case categories; transfer to other architectures or jurisdictions is not
+   established.
+2. Three-seed replication evaluates baseline stability, not every intervention.
+3. Rule coverage is not the prevalence of hindsight leakage; the detector
+   does not measure recall.
+4. Human validation samples 150 of the 329 fully visible cases, not all
+   detector matches or unmatched expressions.
+5. Prospective availability and factual preservation are operational human
+   judgments, not evidence of the actual drafting time of a source sentence.
+6. Sentence deletion may alter discourse coherence even when facts remain.
+7. Inputs are limited to 512 tokens; deletion can affect visible context.
+8. Cue and rewriting conclusions apply to the tested templates and positions.
+9. Rare punishment levels are sparse, and independent heads can produce
+   combinations absent from the reference labels.
+10. Category associations and opposing-cue analyses are exploratory;
+    nonsignificance is not evidence of equivalence.
 
 ---
 
