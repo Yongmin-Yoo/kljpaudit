@@ -1,0 +1,7 @@
+target,analysis_scope,metric,seed_count,n_recipients,seed_mean_pp,seed_sd_pp,ci_low_pp,ci_high_pp
+fine_lv,primary,different_donor_probability_change,3,68,0.50292154518412,0.34072004620599,-0.29473287968521,1.56935573939699
+fine_lv,primary,target_flip,3,68,3.1372549019607803,0.16980890270283,-0.09803921568627,7.745098039215679
+imprisonment_with_labor_lv,primary,different_donor_probability_change,3,215,0.3322748023612299,0.09756584411405,-0.04682045150692,0.87640221029945
+imprisonment_with_labor_lv,primary,target_flip,3,215,3.65891472868217,0.74467038502467,1.61240310077519,6.1406976744186
+imprisonment_without_labor_lv,exploratory,different_donor_probability_change,3,5,0.35540224115053,0.52224044855688,-0.35758556885023,0.97877034544944
+imprisonment_without_labor_lv,exploratory,target_flip,3,5,2.0,3.46410161513775,0.0,6.0

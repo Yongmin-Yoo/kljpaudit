@@ -1,0 +1,7 @@
+target,condition,n_recipients,draw_count,unique_donors,maximum_donor_reuse,mean_unique_donors_per_recipient
+fine_lv,same_label,68,680,68,15,6.779411764705882
+fine_lv,different_label,68,680,22,144,3.044117647058824
+imprisonment_with_labor_lv,same_label,215,2150,220,21,7.6
+imprisonment_with_labor_lv,different_label,215,2150,176,82,5.823255813953488
+imprisonment_without_labor_lv,same_label,5,50,5,12,1.6
+imprisonment_without_labor_lv,different_label,5,50,6,15,3.4
