@@ -1,0 +1,75 @@
+\subsection{Rule-Selected Sentence Replacement}
+\label{sec:cue-swap}
+
+We complement deletion with a sentence-replacement diagnostic.
+Let $C$ denote the rule-selected sentence and $R$ the remaining document.
+Holding the recipient's $R$ fixed, we compare the original input,
+deletion of $C$, replacement by a same-label donor sentence, and
+replacement by a different-label donor sentence.
+Donor labels refer to the source case's benchmark label, not an expert
+judgment about the legal meaning of the sentence.
+
+The protocol was fixed before test inference.
+Donors were matched by selected-sentence token length
+(ratio 0.8--1.25) and normalized source position
+(distance at most 0.25), with self-donors and duplicate documents excluded.
+We used ten paired donor draws per recipient--target pair and retained
+only pairs whose complete inputs fitted within 512 tokens for both
+encoder families, without redrawing donors after the visibility check.
+The common eligible sets contained 68 fine, 215 imprisonment-with-labor,
+and five imprisonment-without-labor recipients.
+These sets are distinct from the 132-case expert-validated subset and
+do not use its annotations.
+
+We evaluated the original frozen KLUE audit checkpoint, independently
+retrained KLUE checkpoints with seeds 13, 42, and 100, and KoELECTRA seed 42.
+Behavioral rates were averaged over donor draws within each recipient.
+Performance was computed separately for each draw using the full
+5/6/5 label spaces and then averaged.
+Paired bootstrap resampled recipients, not individual donor draws.
+New donor-label conversion excluded draws whose original prediction
+already matched the different-label donor's label; this conditional
+metric was reported by checkpoint rather than averaged across seeds.
+
+Table~\ref{tab:cue-swap-imprisonment} shows greater imprisonment
+prediction sensitivity to different-label than same-label replacement.
+Across the three retrained KLUE seeds, the target-flip difference was
+3.66 percentage points (95\% CI: 1.61--6.14; seed SD: 0.74).
+Positive target-flip contrasts were also observed for the original
+audit checkpoint and KoELECTRA.
+
+This sensitivity does not establish consistent donor-label following.
+The retrained three-seed mean difference in probability assigned to the
+different-label donor's label was 0.332 percentage points
+(95\% CI: $-0.047$--0.876).
+The fine target-flip contrast was less conclusive, and the five-case
+imprisonment-without-labor analysis was exploratory.
+Thus, sentence replacement supports sensitivity to rule-selected
+sentence content, but provides limited evidence of directional transfer
+to the donor label.
+
+These are synthetic input interventions, not legally validated
+counterfactuals. The rule-selected sentences are not assumed to be
+expert-validated leakage. Intervals are conditional on the fixed donor
+draws, do not fully account for shared-donor dependence, and are nominal
+without multiplicity correction.
+
+\begin{table*}[t]
+\centering
+\small
+\begin{tabular}{lcc}
+\hline
+Model & Target-flip difference & Donor-probability difference \\
+\hline
+KLUE original audit & 2.47 [0.42, 4.88] & 0.40 [0.12, 0.79] \\
+KLUE seed 13 & 3.63 [1.49, 6.23] & 0.23 [-0.10, 0.76] \\
+KLUE retrained seed 42 & 2.93 [0.88, 5.21] & 0.42 [0.00, 0.98] \\
+KLUE seed 100 & 4.42 [1.95, 7.21] & 0.34 [-0.09, 0.94] \\
+KoELECTRA seed 42 & 2.37 [0.09, 4.79] & 0.57 [0.11, 1.21] \\
+\hline
+KLUE retrained 3-seed mean & 3.66 [1.61, 6.14] & 0.33 [-0.05, 0.88] \\
+\hline
+\end{tabular}
+\caption{Different-label minus same-label sentence replacement on the common imprisonment-with-labor recipient set ($n=215$). Values are percentage-point differences with nominal 95\% recipient-level paired bootstrap intervals. Probability contrasts use the different-label donor's reference label in both conditions. Intervals condition on the fixed donor draws and do not fully model shared-donor dependence. The three-seed mean excludes the original audit checkpoint.}
+\label{tab:cue-swap-imprisonment}
+\end{table*}

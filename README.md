@@ -500,3 +500,30 @@ https://github.com/Yongmin-Yoo/kljpaudit
 Issues:
 
 https://github.com/Yongmin-Yoo/kljpaudit/issues
+
+## 추가 실험 B: 규칙 탐지 문장 교체
+
+기존 132건 전문가 검증 분석과 별도로, 나머지 문서를 고정한
+동일·다른 라벨 문장 교체 실험을 수행했다.
+5개 checkpoint에서 테스트 추론·집계·주요 지표 검산을 완료했다.
+
+징역 target flip의 다른 라벨 교체 − 동일 라벨 교체 차이는
+재학습 KLUE 3 seeds 평균 +3.66 pp,
+명목 95% CI [1.61, 6.14] pp였다.
+donor 방향 확률 차이는 +0.332 pp,
+CI [-0.047, 0.876] pp로 방향성 근거는 제한적이다.
+
+공통 사례 수는 벌금 68건·징역 215건·금고 5건이다.
+금고는 탐색적으로만 보고한다.
+이 실험에 기존 전문가 평가 또는 132건 subset을 사용하지 않았다.
+
+- 실험 정의·실행 범위: [문서](docs/cue_swap_B.md)
+- 확정 입력에서 재계산: [스크립트](scripts/reproduce_cue_swap_B.py)
+- 평가 모듈: [코드](src/kljpaudit/cue_swap.py)
+- 논문 삽입 초안: [LaTeX](docs/manuscript_cue_swap_B.tex)
+- 집계표: `results/aggregate/cue_swap_B_*.csv`
+
+공개 실행 스크립트는 확정된 비공개 연결표와 확률에서
+행동 지표·paired CI·성능 점추정치를 재계산한다.
+donor 선정·모델 추론·성능 CI·seed 요약 전체를 재생성하는
+종단간 파이프라인으로 설명하지 않는다.
