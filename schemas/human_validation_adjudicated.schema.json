@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Canonical adjudicated human-validation record",
+  "description": "Final decisions must be supplied by an authorized human process. This schema does not establish annotation provenance.",
+  "type": "object",
+  "properties": {
+    "case_uid": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^\\S(?:.*\\S)?$"
+    },
+    "record_type": {
+      "const": "adjudicated"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "legal_conclusion_match": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear"
+      ]
+    },
+    "meaning_preserved": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear"
+      ]
+    },
+    "facts_preserved_paraphrase": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear"
+      ]
+    },
+    "grammatically_natural": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear"
+      ]
+    },
+    "no_new_outcome_cue": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear"
+      ]
+    },
+    "content_type": {
+      "type": "string",
+      "enum": [
+        "factual_description",
+        "offense_conclusion",
+        "sentencing_assessment",
+        "explicit_outcome",
+        "mixed_unclear"
+      ]
+    },
+    "outcome_relation": {
+      "type": "string",
+      "enum": [
+        "outcome_independent",
+        "outcome_contingent_revealing",
+        "unclear"
+      ]
+    },
+    "prospective_availability": {
+      "type": "string",
+      "enum": [
+        "available",
+        "not_independently_available",
+        "unclear"
+      ]
+    },
+    "facts_preserved_after_removal": {
+      "type": "string",
+      "enum": [
+        "yes",
+        "no",
+        "unclear"
+      ]
+    }
+  },
+  "required": [
+    "case_uid",
+    "record_type",
+    "legal_conclusion_match",
+    "meaning_preserved",
+    "facts_preserved_paraphrase",
+    "grammatically_natural",
+    "no_new_outcome_cue",
+    "content_type",
+    "outcome_relation",
+    "prospective_availability",
+    "facts_preserved_after_removal"
+  ],
+  "additionalProperties": true
+}
